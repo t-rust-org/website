@@ -1,48 +1,287 @@
-/* SPDX-FileCopyrightText: 2026 Contributors to the T-Rust project
+/* ============================================================
+   T-Rust custom color theme
+   
+   Light mode: light warm-gray backgrounds
+               + orange/ochre logo highlights (#e05020 family)
+   Dark mode:  dark neutral-gray backgrounds
+               + dark brown logo highlights (#200000 / #a02020 family)
+   ============================================================ */
 
-This program and the accompanying materials are made available under
-the terms of the Apache License Version 2.0 which is available at
-https://www.apache.org/licenses/LICENSE-2.0
+/* ── Light mode (default) ─────────────────────────────────── */
+:root {
+  /* Sampled from the logo's warm orange: #e05020              */
+  --tr-accent: #e05020;
+  /* primary highlight / links  */
+  --tr-accent-dark: #b03020;
+  /* hover, active states       */
+  --tr-accent-light: #f0c090;
+  /* subtle tint / backgrounds  */
 
-SPDX-FileType: SOURCE
-SPDX-License-Identifier: Apache-2.0 */
+  /* Warm light grays, influenced by the logo's sandy ochre    */
+  --tr-bg: #f4f0e8;
+  /* page background            */
+  --tr-bg-alt: #ece6d8;
+  /* alternate section bg       */
+  --tr-surface: #ffffff;
+  /* cards, navbar, panels      */
 
-.home-carousel {
-    position: relative;
-    background: url('../img/vecteezy_ai-generated-modern-smart-car-technology-intelligent-system_35270180.jpg') center center repeat;
-    background-size: cover;
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
+  --tr-text: #1a0c08;
+  /* near-black warm brown      */
+  --tr-text-muted: #7a5040;
+  /* secondary text             */
+  --tr-border: #d4ccc0;
+  /* dividers, borders          */
 }
 
-.bar.background-image-fixed-2 {
-    background: url('../img/vecteezy_ai-generated-modern-smart-car-technology-intelligent-system_35270180.jpg') center top no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+/* ── Dark mode ────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Sampled from the logo's darkest areas: #200000 / #100000
+       Used at a brightness where they read clearly as highlights
+       on dark gray backgrounds (#a02020 / #8b2a18 family)      */
+    --tr-accent: #c04030;
+    /* primary highlight / links  */
+    --tr-accent-dark: #8b2010;
+    /* hover, active states       */
+    --tr-accent-light: #a03020;
+    /* subtle tint / muted links  */
+
+    /* Dark neutral grays (as specified) — not brown, just dark */
+    --tr-bg: #1c1c1a;
+    /* page background            */
+    --tr-bg-alt: #252523;
+    /* alternate section bg       */
+    --tr-surface: #2e2c2b;
+    /* cards, navbar, panels      */
+
+    --tr-text: #f0e8e0;
+    /* warm off-white             */
+    --tr-text-muted: #a09080;
+    /* secondary text             */
+    --tr-border: #3c3830;
+    /* dividers, borders          */
+  }
 }
 
-/* increase default font size used for content */
+/* ── Page background & base text ─────────────────────────── */
 body {
-    font-size: 18px;
+  background-color: var(--tr-bg);
+  color: var(--tr-text);
 }
 
-/* do not underline menu items in nav bar */
-.navbar ul.nav>li>a {
-    text-decoration: none;
+/* ── Links ────────────────────────────────────────────────── */
+a {
+  color: var(--tr-accent);
 }
 
-#footer div.eclipse-logos #logo-eclipse-foundation {
-    margin: -20px;
-    height: 150px;
+a:hover,
+a:focus {
+  color: var(--tr-accent-dark);
 }
 
-.home-carousel h1 {
-    text-transform: none;
+/* ── Navbar ───────────────────────────────────────────────── */
+.navbar-default {
+  background-color: var(--tr-surface);
+  border-bottom: 1px solid var(--tr-border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a {
+  color: var(--tr-text);
+}
 
-.home-carousel ul,
-.home-carousel p {
-    text-transform: none;
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover {
+  color: var(--tr-accent);
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: var(--tr-border);
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: var(--tr-text);
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary,
+.btn-template-main {
+  background-color: var(--tr-accent);
+  border-color: var(--tr-accent-dark);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-template-main:hover,
+.btn-template-main:focus {
+  background-color: var(--tr-accent-dark);
+  border-color: var(--tr-accent-dark);
+  color: #fff;
+}
+
+.btn-default {
+  background-color: var(--tr-surface);
+  border-color: var(--tr-border);
+  color: var(--tr-text);
+}
+
+.btn-default:hover {
+  background-color: var(--tr-bg-alt);
+  border-color: var(--tr-accent);
+  color: var(--tr-accent);
+}
+
+/* ── Section backgrounds ──────────────────────────────────── */
+.section-container,
+.section-container-gray-bg,
+section.features,
+.bg-gray {
+  background-color: var(--tr-bg-alt);
+}
+
+/* ── Cards / panels / wells ───────────────────────────────── */
+.panel {
+  background-color: var(--tr-surface);
+  border-color: var(--tr-border);
+}
+
+.panel-heading {
+  background-color: var(--tr-bg-alt);
+  border-bottom-color: var(--tr-border);
+  color: var(--tr-text);
+}
+
+.well {
+  background-color: var(--tr-bg-alt);
+  border-color: var(--tr-border);
+  color: var(--tr-text);
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--tr-text);
+}
+
+/* ── Muted text ───────────────────────────────────────────── */
+.text-muted,
+small {
+  color: var(--tr-text-muted) !important;
+}
+
+/* ── Feature icons ────────────────────────────────────────── */
+.features-item .icon,
+.features-item i {
+  color: var(--tr-accent);
+}
+
+/* ── Top bar ──────────────────────────────────────────────── */
+#topbar {
+  background-color: var(--tr-accent);
+  border-bottom: none;
+  color: #fff;
+}
+
+#topbar a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#topbar a:hover {
+  color: #fff;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+#footer {
+  background-color: var(--tr-surface);
+  border-top: 1px solid var(--tr-border);
+  color: var(--tr-text-muted);
+}
+
+#footer h3,
+#footer h4 {
+  color: var(--tr-text);
+}
+
+#footer a {
+  color: var(--tr-accent);
+}
+
+#footer a:hover {
+  color: var(--tr-accent-dark);
+}
+
+/* ── Horizontal rules & borders ───────────────────────────── */
+hr {
+  border-color: var(--tr-border);
+}
+
+/* ── Carousel ─────────────────────────────────────────────── */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.carousel-indicators li {
+  border-color: var(--tr-accent);
+}
+
+.carousel-indicators .active {
+  background-color: var(--tr-accent);
+}
+
+/* ── Form inputs ──────────────────────────────────────────── */
+.form-control {
+  background-color: var(--tr-surface);
+  border-color: var(--tr-border);
+  color: var(--tr-text);
+}
+
+.form-control:focus {
+  border-color: var(--tr-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tr-accent) 20%, transparent);
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.table>thead>tr>th {
+  border-bottom-color: var(--tr-border);
+  color: var(--tr-text-muted);
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top-color: var(--tr-border);
+  color: var(--tr-text);
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: var(--tr-bg-alt);
+}
+
+/* ── Blockquotes ──────────────────────────────────────────── */
+blockquote {
+  border-left-color: var(--tr-accent);
+  color: var(--tr-text-muted);
+}
+
+/* ── List groups ──────────────────────────────────────────── */
+.list-group-item {
+  background-color: var(--tr-surface);
+  border-color: var(--tr-border);
+  color: var(--tr-text);
+}
+
+.list-group-item.active,
+.list-group-item.active:hover {
+  background-color: var(--tr-accent);
+  border-color: var(--tr-accent);
+  color: #fff;
 }
